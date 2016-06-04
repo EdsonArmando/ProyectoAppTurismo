@@ -1,5 +1,6 @@
 package com.android.guix.edson.org.androidturismo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.guix.edson.org.androidturismo.beans.Usuario;
 import com.android.guix.edson.org.androidturismo.volley.WebService;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -25,6 +27,7 @@ import java.util.StringTokenizer;
 public class Login extends AppCompatActivity {
     private TextView txtEmail, txtPassword;
     private Button btnLogin;
+    private Usuario usuarioLogin=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +46,23 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if(response.getJSONArray("user").length()>0){
-                                Toast.makeText(getApplicationContext(),"Bienvenido",Toast.LENGTH_LONG).show();
+                            JSONArray listaUsuarios=response.getJSONArray("user");
+                            if(listaUsuarios.length()>0){
+                                //Toast.makeText(getApplicationContext(),"Bienvenido",Toast.LENGTH_LONG).show();
+                                JSONObject user=listaUsuarios.getJSONObject(0);
+                                usuarioLogin=new Usuario(
+                                        user.getInt("idUsuario"),
+                                        user.getString("nombre"),
+                                        user.getString("correo"),
+                                        user.getString("nick"),
+                                        "none",
+                                        response.getString("token"),
+                                        response.getString("exp")
+                                    );
+                                startActivity(new Intent(Login.this,RegistroUsuario.class));
                             }else{
-                                Toast.makeText(getApplicationContext(),"Verificar sus credenciales",Toast.LENGTH_LONG).show();
+                               Toast.makeText(getApplicationContext(),"Verificar sus credenciales",Toast.LENGTH_LONG).show();
                             }
-
                         } catch (Exception ex) {
                             Log.e("Response exception", ex.getMessage());
                         }
