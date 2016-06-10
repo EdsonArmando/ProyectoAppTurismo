@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 public class WebService {
     public static String server="http://192.168.1.6:4000/api/v1/";
     public static String autenticar=server+"usuario/login";
+    public static String registro=server+"usuario/registro";
     private static WebService mInstance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
