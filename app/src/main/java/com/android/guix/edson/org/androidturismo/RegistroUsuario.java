@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistroUsuario extends AppCompatActivity {
-    private TextView txtNombre, txtCorreo, txtNick, txtpassword;
+    private TextView txtNombre,txtApellido,txtTelefono, txtCorreo, txtNick, txtpassword;
     private Button btnRegistro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,8 @@ public class RegistroUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_registro_usuario);
         btnRegistro=(Button) findViewById(R.id.btnRegistro);
         txtNombre=(TextView) findViewById(R.id.txtNombre);
+        txtApellido=(TextView) findViewById(R.id.txtApellido);
+        txtTelefono=(TextView) findViewById(R.id.txtTelefono);
         txtCorreo=(TextView) findViewById(R.id.txtCorreo);
         txtNick=(TextView) findViewById(R.id.txtNick);
         txtpassword=(TextView) findViewById(R.id.txtPassword);
@@ -39,6 +41,8 @@ public class RegistroUsuario extends AppCompatActivity {
             public void onClick(View v) {
                 Map<String, String> params=new HashMap<String, String>();
                 params.put("nombre", txtNombre.getText().toString());
+                params.put("apellido", txtApellido.getText().toString());
+                params.put("telefono", txtTelefono.getText().toString());
                 params.put("correo", txtCorreo.getText().toString());
                 params.put("nick", txtNick.getText().toString());
                 params.put("contrasena", txtpassword.getText().toString());

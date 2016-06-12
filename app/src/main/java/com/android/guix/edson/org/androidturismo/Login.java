@@ -47,7 +47,7 @@ public class Login extends AppCompatActivity {
                 params.put("correo",txtEmail.getText().toString());
                 params.put("contrasena", txtPassword.getText().toString());
 
-                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, WebService.autenticar, new JSONObject(params), new Response.Listener<JSONObject>() {
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, WebService.login, new JSONObject(params), new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
@@ -58,6 +58,8 @@ public class Login extends AppCompatActivity {
                                 usuarioLogin=new Usuario(
                                         user.getInt("idUsuario"),
                                         user.getString("nombre"),
+                                        user.getString("apellido"),
+                                        user.getInt("telefono"),
                                         user.getString("correo"),
                                         user.getString("nick"),
                                         "none",

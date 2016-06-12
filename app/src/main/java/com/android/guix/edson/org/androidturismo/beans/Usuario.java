@@ -6,6 +6,8 @@ package com.android.guix.edson.org.androidturismo.beans;
 public class Usuario {
     private Integer idUsuario;
     private String nombre;
+    private String apellido;
+    private Integer telefono;
     private String correo;
     private String nick;
     private String contraseña;
@@ -16,14 +18,32 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(Integer idUsuario, String nombre, String correo, String nick, String contraseña, String token, String exp) {
+    public Usuario(Integer idUsuario, String nombre,String apellido,Integer telefono, String correo, String nick, String contraseña, String token, String exp) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
         this.correo = correo;
         this.nick = nick;
         this.contraseña = contraseña;
         this.token = token;
         this.exp = exp;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Integer getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
     }
 
     public Integer getIdUsuario() {
